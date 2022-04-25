@@ -14,7 +14,7 @@ export default ({note}) => {
     <View style={styles.form}>
 
       <Text style={styles.heading}>Verify phone number</Text>
-      <Text style={styles.note}>Registration details: {'\n\n'}{note}</Text>
+      <Text style={styles.note}>Registration details: {note}</Text>
 
       <View style={styles.field}>
         <Text style={styles.fieldLabel}>OTP</Text>

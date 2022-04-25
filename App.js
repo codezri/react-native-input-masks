@@ -14,7 +14,8 @@ const App = () => {
   const [note, setNote] = useState('');
 
   const handleOnSubmit = (formData) => {
-    let note = Object.keys(formData)
+    let note = '\n\n'
+    note += Object.keys(formData)
                   .reduce((acc, v) => (acc + `${v}: ${formData[v]} \n`)
                     , '');
     note += '\nOTP was sent to your phone — verify to continue.'
