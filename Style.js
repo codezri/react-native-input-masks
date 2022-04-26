@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-export default StyleSheet.create({
+const styles = StyleSheet.create({
   form: {
     flex: 1,
     justifyContent: 'center',
@@ -17,7 +17,7 @@ export default StyleSheet.create({
     color: 'grey',
     paddingBottom: 12,
     paddingTop: 12,
-    fontSize: 14
+    fontSize: 16
   },
   field: {
     width: '85%'
@@ -26,16 +26,20 @@ export default StyleSheet.create({
     color: 'black',
     paddingBottom: 6,
     paddingTop: 6,
-    textAlign: 'left'
+    textAlign: 'left',
+    fontSize: 18
   },
   maskedInput: {
     borderWidth: 2,
     borderRadius: 6,
     width: '100%',
     padding: 12,
-    color: 'black'
+    color: 'black',
+    fontSize: 18
   },
   registerBtnWrapper: {
     marginTop: 20
   }
 });
+
+export default styles;

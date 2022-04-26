@@ -9,7 +9,7 @@ import TextInputMask from 'react-native-text-input-mask';
 
 import styles from './Style.js';
 
-export default ({note}) => {
+const OTPForm = ({note}) => {
   return (
     <View style={styles.form}>
 
@@ -34,3 +34,5 @@ export default ({note}) => {
     </View>
   );
 };
+
+export default OTPForm;

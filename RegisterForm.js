@@ -9,15 +9,23 @@ import TextInputMask from 'react-native-text-input-mask';
 
 import styles from './Style.js';
 
-export default ({onSubmit}) => {
+const RegisterForm = ({onSubmit}) => {
   const [formData, setFormData] = useState({});
+  const [isValid, setIsValid] = useState(false);
 
   const handleSubmit = () => {
     onSubmit(formData);
   };
 
   const handleFieldUpdate = (field, value) => {
-    setFormData((prevState) => ({...prevState, [field]: value}));
+    setFormData((prevState) => {
+      let formData = {...prevState, [field]: value};
+      setIsValid(formData.firstName
+              && formData.lastName
+              && formData.phone?.length == 18
+              && formData.memberNumber?.length == 8);
+      return formData;
+    });
   };
 
   return (
@@ -76,9 +84,11 @@ export default ({onSubmit}) => {
       </View>
 
       <View style={styles.registerBtnWrapper}>
-        <Button title="Submit now" onPress={handleSubmit}/>
+        <Button title="Submit now" onPress={handleSubmit} disabled={!isValid}/>
       </View>
 
     </View>
   );
 };
+
+export default RegisterForm;
