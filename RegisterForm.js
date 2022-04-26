@@ -17,14 +17,16 @@ const RegisterForm = ({onSubmit}) => {
     onSubmit(formData);
   };
 
-  const handleFieldUpdate = (field, value) => {
+  const handleFieldUpdate = (field, formatted, extracted) => {
     setFormData((prevState) => {
-      let formData = {...prevState, [field]: value};
-      setIsValid(formData.firstName
-              && formData.lastName
-              && formData.phone?.length == 18
-              && formData.memberNumber?.length == 8);
-      return formData;
+      let formData = {...prevState,
+                        [field]: formatted,
+                        [`${field}Extracted`]: extracted};
+      setIsValid(formData.firstNameExtracted
+              && formData.lastNameExtracted
+              && formData.phoneExtracted?.length == 10
+              && formData.memberNumberExtracted?.length == 5);
+      return formData; // new state
     });
   };
 
@@ -39,7 +41,7 @@ const RegisterForm = ({onSubmit}) => {
           style={styles.maskedInput}
           mask="[A…]"
           value={formData.firstName}
-          onChangeText={(value) => handleFieldUpdate('firstName', value)}
+          onChangeText={(formatted, extracted) => handleFieldUpdate('firstName', formatted, extracted)}
           placeholder="i.e., John"
           placeholderTextColor="grey"
         />
@@ -51,7 +53,7 @@ const RegisterForm = ({onSubmit}) => {
           style={styles.maskedInput}
           mask="[A…]"
           value={formData.lastName}
-          onChangeText={(value) => handleFieldUpdate('lastName', value)}
+          onChangeText={(formatted, extracted) => handleFieldUpdate('lastName', formatted, extracted)}
           placeholder="i.e., Doe"
           placeholderTextColor="grey"
         />
@@ -63,7 +65,7 @@ const RegisterForm = ({onSubmit}) => {
           style={styles.maskedInput}
           mask="+1 ([000]) [000]-[00]-[00]"
           value={formData.phone}
-          onChangeText={(value) => handleFieldUpdate('phone', value)}
+          onChangeText={(formatted, extracted) => handleFieldUpdate('phone', formatted, extracted)}
           placeholder="+1 (000) 000-00-00"
           placeholderTextColor="grey"
           keyboardType="numeric"
@@ -74,9 +76,9 @@ const RegisterForm = ({onSubmit}) => {
         <Text style={styles.fieldLabel}>Membership number</Text>
         <TextInputMask
           style={styles.maskedInput}
-          mask="{M-}[00-000]"
+          mask="M-[00]-[000]"
           value={formData.memberNumber}
-          onChangeText={(value) => handleFieldUpdate('memberNumber', value)}
+          onChangeText={(formatted, extracted) => handleFieldUpdate('memberNumber', formatted, extracted)}
           placeholder="M 00-000"
           placeholderTextColor="grey"
           keyboardType="numeric"
