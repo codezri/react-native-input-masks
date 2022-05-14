@@ -63,10 +63,10 @@ const RegisterForm = ({onSubmit}) => {
         <Text style={styles.fieldLabel}>Phone number</Text>
         <TextInputMask
           style={styles.maskedInput}
-          mask="+1 ([000]) [000]-[00]-[00]"
+          mask="+1 ([000]) [000]-[0000]"
           value={formData.phone}
           onChangeText={(formatted, extracted) => handleFieldUpdate('phone', formatted, extracted)}
-          placeholder="+1 (000) 000-00-00"
+          placeholder="+1 (000) 000-0000"
           placeholderTextColor="grey"
           keyboardType="numeric"
         />
